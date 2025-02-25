@@ -28,7 +28,7 @@ st.markdown("""
 
     /* Button Styling */
     .stButton>button {
-        background-color: #28a745;
+        background-color:rgb(226, 159, 217);
         color: white;
         font-size: 18px;
         padding: 12px 24px;
@@ -40,7 +40,7 @@ st.markdown("""
     }
 
     .stButton>button:hover {
-        background-color: #218838;
+        background-color:rgb(208, 247, 66);
         transform: scale(1.05);
     }
 
@@ -100,7 +100,7 @@ st.markdown("""
     }
 
     /* Reset Button Styling */
-    .reset-button {
+    .reset-button button {
         background-color: #dc3545;
         color: white;
         font-size: 18px;
@@ -111,12 +111,12 @@ st.markdown("""
         border: none;
     }
 
-    .reset-button:hover {
+    .reset-button button:hover {
         background-color: #c82333;
         transform: scale(1.05);
     }
 
-    .reset-button:active {
+    .reset-button button:active {
         transform: scale(0.98);
     }
 
@@ -218,15 +218,14 @@ if len(st.session_state.history) > 0:
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Reset button to clear input fields and session state
-# Reset Button: Clears all session state values
-if st.button("Reset"):
-    # Clear all session state variables
+if st.button("Reset", key="reset_button"):
     st.session_state.clear()
 
 st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer Section
 st.markdown('<div class="footer">Created by Saba Muhammad Riaz ❤️ using Streamlit</div>', unsafe_allow_html=True)
+
 
 
 
