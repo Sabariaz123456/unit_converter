@@ -130,6 +130,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Conversion factors defined globally
 conversion_factors = {
     "Length": {
         "Meter": 1, "Kilometer": 0.001, "Centimeter": 100, "Millimeter": 1000, "Mile": 0.000621371,
@@ -146,6 +147,7 @@ conversion_factors = {
     }
 }
 
+# Conversion logic
 def convert_units(value, from_unit, to_unit, category):
     if category == "Temperature":
         if from_unit == "Celsius":
@@ -163,6 +165,7 @@ def convert_units(value, from_unit, to_unit, category):
     else:
         return value * conversion_factors[category][to_unit] / conversion_factors[category][from_unit]
 
+# Function to handle conversion history
 if "history" not in st.session_state:
     st.session_state.history = []
 
@@ -171,33 +174,60 @@ def add_to_history(value, from_unit, to_unit, result, category):
     if len(st.session_state.history) > 5:
         st.session_state.history.pop(0)
 
+# Reset function to clear session state and inputs
+def reset_fields():
+    st.session_state.history = []
+    st.session_state["category"] = None
+    st.session_state["from_unit"] = None
+    st.session_state["to_unit"] = None
+    st.session_state["value"] = None
+    st.experimental_rerun()
+
+# Main app layout
 st.markdown('<div class="main-container">', unsafe_allow_html=True)
 st.markdown('<h1 class="title">🌟 Unit Converter</h1>', unsafe_allow_html=True)
 
-category = st.selectbox("Select Category", list(conversion_factors.keys()))
+# Select category
+category = st.selectbox("Select Category", list(conversion_factors.keys()), key="category")
 
-units = list(conversion_factors[category].keys())
-from_unit = st.selectbox("From Unit", units)
-to_unit = st.selectbox("To Unit", units)
-value = st.number_input("Enter Value", min_value=0.0, step=0.1)
+# Define units for selected category
+units = list(conversion_factors[category].keys()) if category else []
+from_unit = st.selectbox("From Unit", units, key="from_unit")
+to_unit = st.selectbox("To Unit", units, key="to_unit")
 
+# Input value
+value = st.number_input("Enter Value", min_value=0.0, step=0.1, key="value")
+
+# Conversion button
 if st.button("Convert"):
-    result = convert_units(value, from_unit, to_unit, category)
-    if result is not None:
-        st.markdown(f'<div class="result-container">Converted Value: {result:.4f} {to_unit}</div>', unsafe_allow_html=True)
-        add_to_history(value, from_unit, to_unit, result, category)
+    if value is not None and category and from_unit and to_unit:
+        result = convert_units(value, from_unit, to_unit, category)
+        if result is not None:
+            st.markdown(f'<div class="result-container">Converted Value: {result:.4f} {to_unit}</div>', unsafe_allow_html=True)
+            add_to_history(value, from_unit, to_unit, result, category)
+        else:
+            st.error("Conversion not supported!")
     else:
-        st.error("Conversion not supported!")
+        st.error("Please complete all fields")
+
+# Display history of conversions
 if len(st.session_state.history) > 0:
     st.markdown('<div class="history-container"><h3>Conversion History</h3>', unsafe_allow_html=True)
     for record in st.session_state.history:
         st.markdown(f"<p>{record}</p>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-if st.button("Reset", key="reset", help="Click to reset all fields"):
-    st.experimental_rerun()
+# Reset button to clear input fields and session state
+# Reset Button: Clears all session state values
+if st.button("Reset"):
+    # Clear all session state variables
+    st.session_state.clear()
 
 st.markdown("</div>", unsafe_allow_html=True)
+
+# Footer Section
+st.markdown('<div class="footer">Created by Saba Muhammad Riaz ❤️ using Streamlit</div>', unsafe_allow_html=True)
+
 
 st.markdown('<div class="footer">Created by Saba Muhammad Riaz ❤️ using Streamlit</div>', unsafe_allow_html=True)
 
