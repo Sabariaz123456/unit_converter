@@ -229,7 +229,6 @@ st.markdown("</div>", unsafe_allow_html=True)
 st.markdown('<div class="footer">Created by Saba Muhammad Riaz ❤️ using Streamlit</div>', unsafe_allow_html=True)
 
 
-st.markdown('<div class="footer">Created by Saba Muhammad Riaz ❤️ using Streamlit</div>', unsafe_allow_html=True)
 
 
 
