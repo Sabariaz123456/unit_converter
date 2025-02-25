@@ -28,7 +28,7 @@ st.markdown("""
 
     /* Button Styling */
     .stButton>button {
-        background-color:rgb(245, 237, 244);
+        background-color:rgb(226, 159, 217);
         color: white;
         font-size: 18px;
         padding: 12px 24px;
@@ -50,7 +50,7 @@ st.markdown("""
 
     /* Input Fields Styling */
     .stSelectbox, .stNumberInput {
-        background-color:rgb(1, 7, 14);
+        background-color: #f8f9fa;
         border: 1px solid #ddd;
         border-radius: 8px;
         padding: 10px;
@@ -225,6 +225,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer Section
 st.markdown('<div class="footer">Created by Saba Muhammad Riaz ❤️ using Streamlit</div>', unsafe_allow_html=True)
+
 
 
 
