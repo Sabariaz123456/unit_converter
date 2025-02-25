@@ -40,7 +40,7 @@ st.markdown("""
     }
 
     .stButton>button:hover {
-        background-color:rgb(208, 247, 66);
+        background-color:rgb(252, 167, 57);
         transform: scale(1.05);
     }
 
