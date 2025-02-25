@@ -28,7 +28,7 @@ st.markdown("""
 
     /* Button Styling */
     .stButton>button {
-        background-color:rgb(226, 159, 217);
+        background-color:rgb(245, 237, 244);
         color: white;
         font-size: 18px;
         padding: 12px 24px;
@@ -50,7 +50,7 @@ st.markdown("""
 
     /* Input Fields Styling */
     .stSelectbox, .stNumberInput {
-        background-color: #f8f9fa;
+        background-color:rgb(1, 7, 14);
         border: 1px solid #ddd;
         border-radius: 8px;
         padding: 10px;
